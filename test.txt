@@ -12,16 +12,16 @@ local Window = Fluent:CreateWindow({
     MinimizeKey = Enum.KeyCode.End -- Used when theres no MinimizeKeybind
 })
 local Tabs = {
-    Main = Window:AddTab({ Title = "=(Tab Main)=", Icon = "No Icon" }),
-    Setting = Window:AddTab({ Title = "=(Tab Setting)=", Icon = "No Icon" }),
-    Stats = Window:AddTab({ Title = "=(Tab Stats)=", Icon = "No Icon" }),
-    Player = Window:AddTab({ Title = "=(Tab Player)=", Icon = "No Icon" }),
-    Teleport = Window:AddTab({ Title = "=(Tap Teleport)=", Icon = "No Icon" }),
-    Fruit = Window:AddTab({ Title = "=(Tab Devil Fruit)=", Icon = "No Icon" }),
-    Raid = Window:AddTab({ Title = "=(Tab Dungeon)=", Icon = "No Icon" }),
-    Race = Window:AddTab({ Title = "=(Tad Race V4)", Icon = "No Icon" }),
-    Shop = Window:AddTab({ Title = "=(Tab Shop)=", Icon = "No Icon" }),
-	Misc = Window:AddTab({ Title = "=(Tab Misc)=", Icon = "No Icon" }),
+    Main = Window:AddTab({ Title = "Tab Main", Icon = "No Icon" }),
+    Setting = Window:AddTab({ Title = "=Tab Setting", Icon = "No Icon" }),
+    Stats = Window:AddTab({ Title = "Tab Stats", Icon = "No Icon" }),
+    Player = Window:AddTab({ Title = "Tab Player", Icon = "No Icon" }),
+    Teleport = Window:AddTab({ Title = "Tap Teleport", Icon = "No Icon" }),
+    Fruit = Window:AddTab({ Title = "Tab Devil Fruit", Icon = "No Icon" }),
+    Raid = Window:AddTab({ Title = "Tab Dungeon", Icon = "No Icon" }),
+    Race = Window:AddTab({ Title = "Tad Race V4", Icon = "No Icon" }),
+    Shop = Window:AddTab({ Title = "Tab Shop", Icon = "No Icon" }),
+	Misc = Window:AddTab({ Title = "Tab Misc", Icon = "No Icon" }),
 }
 local Options = Fluent.Options
 
