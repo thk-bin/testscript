@@ -5249,8 +5249,7 @@ end)
 
 
 
-local Chips = {"Flame","Ice","Quake","Light","Dark","Spider","Rumble","Magma","Buddha","Sand","Phoenix","Dough"}
-
+local Chips = {"Dough","Phoenix","Buddha","Light","Dark","Spider","Rumble","Magma","Quake","Sand","Ice","Flame"}
 local DropdownRaid = Tabs.Raid:AddDropdown("DropdownRaid", {
     Title = "Dropdown",
     Values = Chips,
