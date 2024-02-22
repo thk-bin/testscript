@@ -1,0 +1,128 @@
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+local Window = Fluent:CreateWindow({
+    Title = "MANA HUB-V1.2 BETA-Version |",
+    SubTitle = "https://discord.gg/JNEgyPdW",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(530, 350),
+    Acrylic = true,
+    Theme = "Rose",
+    MinimizeKey = Enum.KeyCode.End
+})
+local Tabs = {
+    Main = Window:AddTab({ Title = "(Main fram)", Icon = "home" }),
+    Stats = Window:AddTab({ Title = "(Stats)", Icon = "plus-circle" }),
+    Player = Window:AddTab({ Title = "(Player)", Icon = "baby" }),
+    Teleport = Window:AddTab({ Title = "(Island)", Icon = "palmtree" }),
+    Fruit = Window:AddTab({ Title = "(Fruit)", Icon = "apple" }),
+    Raid = Window:AddTab({ Title = "(Raid)", Icon = "swords" }),
+    Race = Window:AddTab({ Title = "(Race V4)", Icon = "chevrons-right" }),
+    Shop = Window:AddTab({ Title = "(Shop)", Icon = "shopping-cart" }),
+	Misc = Window:AddTab({ Title = "(Misc)", Icon = "list-plus" }),
+    Hop = Window:AddTab({ Title = "(Hop server)", Icon = "book" }),
+    Setting = Window:AddTab({ Title = "(Setting)", Icon = "settings" }),
+}
+local Options = Fluent.Options
+do
+
+local id = game.PlaceId
+if id == 2753915549 then First_Sea = true; elseif id == 4442272183 then Second_Sea = true; elseif id == 7449423635 then Third_Sea = true; else game:Shutdown() end;
+
+function AntiBan()
+    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+        if v:IsA("LocalScript") then
+            if v.Name == "General" or v.Name == "Shiftlock"  or v.Name == "FallDamage" or v.Name == "4444" or v.Name == "CamBob" or v.Name == "JumpCD" or v.Name == "Looking" or v.Name == "Run" then
+                v:Destroy()
+            end
+        end
+     end
+     for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerScripts:GetDescendants()) do
+        if v:IsA("LocalScript") then
+            if v.Name == "RobloxMotor6DBugFix" or v.Name == "Clans"  or v.Name == "Codes" or v.Name == "CustomForceField" or v.Name == "MenuBloodSp"  or v.Name == "PlayerList" then
+                v:Destroy()
+            end
+        end
+     end
+    end
+    AntiBan()
+
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+	game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+	wait(1)
+	game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+First_Sea = false
+Second_Sea = false
+Third_Sea = false
+if game.PlaceId == 2753915549 then
+First_Sea = true
+elseif game.PlaceId == 4442272183 then
+Second_Sea = true
+elseif game.PlaceId == 7449423635 then
+Third_Sea = true
+end
+
+
+function CheckLevel()
+local UiIntilize = {
+    ["Main"] = {
+        {Mode="Label",Title="Only Turn On 1 Farm At The Same Time"},
+        {Mode="Toggle",Title="Auto Katakuri",Description="Turn On Auto Kill Cake Prince And Auto Kill Dough King By Default",Args={"Katakuri","Enable"}},
+        {Mode="Toggle",Title="Auto Bone",Description="",Args={"Bone","Enable"}},
+        {Mode="Toggle",Title="Kill Aura",Description="Farm Near Lv Mob Or Near Position",Args={"Kill Aura","Enable"}},
+        {Mode="Toggle",Title="Fully Auto Dough King",Description="",Args={"Full Dough King","Enable"}},
+        {Mode="Label",Title="Setting For Auto Farm"},
+        {Mode="Label",Title="Anchor Position"},
+        {Mode="Toggle",Title="TP Back Anchor Position",Description="If Exceed Anchor Position Will Tp Back To Anchor Position",Args={"Kill Aura","AnchorTPBack"}},
+        {Mode="Button",Title="Set Anchor Position",Callback=function ()
+            pcall(function ()
+                getgenv().Setting["Kill Aura"].AnchorPosition = tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+            end)
+        end},
+        {Mode="Dropdown",Title="Distace From Anchor",Table = (function ()
+            local Table = {}
+            for i=400,4000,400 do 
+                table.insert(Table,i)
+            end
+            return Table
+        end)(),Default=getgenv().Setting["Kill Aura"].DistanceFromAnchor/400,OnChange=function (state)
+            getgenv().Setting["Kill Aura"].DistanceFromAnchor = state
+        end},
+        {Mode="Toggle",Title="Use Sword",Args = {"Mastery","Sword"}},
+        {Mode="Toggle",Title="Sword Switcher",Description="Switch Sword When Have Enough Skills (Default) or Max Mastery",Args={"SwordSwitcher","Enable"}},
+        {Mode="Toggle",Title="Only Switch Max Mastery",Description="Only Switch When Max Mastery",Args={"SwordSwitcher","MaxMastery"}},
+        {Mode="Toggle",Title="Switch Sword When Low", Description = "Must Enable Use Sword", Args={"Mastery","Sword/Low"}},
+        {Mode="Label",Title="Go To Setting To Select Skills"},
+        {Mode="Toggle",Title="Mastery Farm",Description="Need Enable Auto Katakuri Or Bone", Args={"Mastery","Enable"}},
+        {Mode="Toggle",Title ="Aimbot Camera " ,Description = "Aimbot for Mastery Using Camera", Args={"Mastery","Camera"}},
+        {
+            Mode = "Dropdown",
+            Title = "Matery Health",
+            Args = {"Mastery", "Health"},
+            Table = {20,25,30,35,40,45,50},
+            Default = (function ()
+                local Default = {20,25,30,35,40,45,50}
+                local Found = 1
+                if not table.find(Default,getgenv().Setting.Mastery.Health) then 
+                    getgenv().Setting.Mastery.Health = 30
+                else
+                    Found = table.find(Default,getgenv().Setting.Mastery.Health) 
+                end
+                return Found
+            end)(),
+            OnChange = function(value)
+                getgenv().Setting.Mastery.Health = tonumber(value)
+                SettingManager:Save()
+            end
+        },        
+        {Mode="Toggle",Title="Mastery Fruit / Gun", Description = "Default Is Fruit, Turning On = Using Gun, Must Enable Mastery Farm",Args = {"Mastery","Fruit/Gun"}},
+        {
+            Mode = "Toggle",
+            Title = "Disable Silent Aim",
+            Args = {"Pvp", "DisableSilentAim"},
+            OnChange = function(state)
+                getgenv().Setting.Pvp.DisableSilentAim = state
+                SettingManager:Save()
+            end
+        },
+        {Mode="Button",Title="Fps Boost",Callback = getgenv().LiteFpsBoost}
+    },
