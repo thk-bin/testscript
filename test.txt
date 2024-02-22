@@ -4,7 +4,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 --------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
     Title = "Macro x Hub-Blox Fruit",
-    SubTitle = "by @lao=ban dell lo do (https://discord.gg/JNEgyPdW)",
+    SubTitle = "by @lao=ban dell li do (https://discord.gg/JNEgyPdW)",
     TabWidth = 160,
     Size = UDim2.fromOffset(450, 300),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
